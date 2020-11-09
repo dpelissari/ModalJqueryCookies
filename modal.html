@@ -1,0 +1,43 @@
+<html>
+<head>
+    <style type="text/css">
+        .modal { position:fixed; top:0; right:0; bottom:0; left:0; background:rgba(0, 0, 0, 0.8); z-index:99999; opacity:0; -webkit-transition: opacity 400ms ease-in; -moz-transition: opacity 400ms ease-in; transition: opacity 400ms ease-in; pointer-events:auto; }
+        .modal>div { width:450px; position:relative; margin:10% auto; padding:15px 15px; background:#fff; }
+        .fechar { position:absolute; width:32px; right:-15px; top:-20px; text-align:center; line-height:30px; margin-top:5px; background:#ff4545; border-radius:50%; font-size:16px; color:#fff; cursor:pointer; }
+    </style>
+    
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+
+<body>
+
+    <div class="modal" id="modal">
+        <div>
+            <a onclick="fecharModal()" class="fechar"><img src="http://www.agripoint.com.br/ico-fechar.svg" alt="Fechar"></a>
+            <a href="https://www.google.com.br">
+                <img src="https://www.agripoint.com.br/images/pesquisa-de-adequacao.jpg" alt="">
+            </a>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+            // cookie para exibir uma vez por dia
+            if($.cookie("modal") == null){
+            setTimeout(function () {
+                $('#modal').css('opacity', 1);
+                var date = new Date();
+                date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+                $.cookie("modal", "2", {expires: date});
+            }, 3000);
+    }});
+
+    function fecharModal() { $(".modal").css("display", "none"); }
+
+</script>
+
+</html>
